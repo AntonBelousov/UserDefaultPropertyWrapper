@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UserDefaultPropertyWrapper:
-    :commit: a96e2f54f1234c75836f1580744cbf99caf216ec
+    :commit: f6c88a6c03201bbf6fe44a860792646777141e93
     :git: https://github.com/AntonBelousov/UserDefaultPropertyWrapper
 
 SPEC CHECKSUMS:
@@ -18,4 +18,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c72d1ee0f87c61e03c3ab59c688e84d89799eea9
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

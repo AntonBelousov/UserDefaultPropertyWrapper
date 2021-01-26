@@ -11,34 +11,43 @@ import UserDefaultPropertyWrapper
 class Settings {
     static let shared = Settings()
     
-    @UserDefault("boolValue", defaultValue: false)
+    @UserDefault("boolValue")
     var boolValue: Bool
+
+    @UserDefault("boolValueWithDefaultValue", defaultValue: true)
+    var boolValueWithDefaultValue: Bool
     
-    @UserDefault("intValue", defaultValue: 0)
+    @UserDefault("intValue")
     var intValue: Int
+
+    @UserDefault("intValueWithDefaultValue", defaultValue: 451)
+    var intValueWithDefaultValue: Int
     
-    @UserDefault("doubleValue", defaultValue: 0)
+    @UserDefault("doubleValue")
     var doubleValue: Double
     
-    @UserDefault("floatValue", defaultValue: 0)
+    @UserDefault("floatValue")
     var floatValue: Float
     
     @UserDefault("stringValue", defaultValue: "")
     var stringValue: String
     
-    @UserDefault("optionalStringValue", defaultValue: nil)
+    @UserDefault("optionalStringValue")
     var optionalStringValue: String?
     
     @UserDefault("dateValue", defaultValue: .distantFuture)
     var dateValue: Date
     
-    @UserDefault("optionalDataValue", defaultValue: nil)
+    @UserDefault("optionalDataValue")
     var optionalDataValue: Data?
+   
+    @UserDefault("array", defaultValue: [1,9,6,1])
+    var array: [Int]
     
-    @UserDefault("array", defaultValue: [])
-    var array: [[Int]]
+    @UserDefault("arrayOfArray")
+    var arrayOfArray: [[Int]]
     
-    @UserDefault("dict", defaultValue: [:])
+    @UserDefault("dict")
     var dict: [String: Int]
 }
 
@@ -53,13 +62,13 @@ class UsersSource {
     
     static let defaults = UserDefaults(suiteName: "app.group.id")!
     
-    @UserDefault("users", defaultValue:[], defaults: UsersSource.defaults)
+    @UserDefault("users", defaults: UsersSource.defaults)
     var users: [User]
 }
 
 func test() {
-    Settings.shared.array = [[1],[2,3]]
-    print(Settings.shared.array)
+    Settings.shared.arrayOfArray = [[1],[2,3]]
+    print(Settings.shared.arrayOfArray)
 
     let user = User(
         firstname: "Artur",
@@ -104,6 +113,6 @@ enum Activity: UserDefaultsConvertible {
 }
 
 class ActivityStorage {
-    @UserDefault("activity", defaultValue: nil)
+    @UserDefault("activity")
     var activity: Activity?
 }
