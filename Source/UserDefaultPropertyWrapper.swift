@@ -159,9 +159,6 @@ extension Optional: UserDefaultsConvertibleWithDefaultValue where Wrapped: UserD
 extension Array: UserDefaultsConvertibleWithDefaultValue where Element: UserDefaultsConvertible {
     public static var defaultValue: Array<Element> { return [] }
 }
-extension Array: UserDefaultsConvertibleWithDefaultValue where Element: UserDefaultsConvertible {
-    public static var defaultValue: Array<Element> { return [] }
-}
 extension Dictionary: UserDefaultsConvertibleWithDefaultValue where Key == String, Value: UserDefaultsConvertible {
     public static var defaultValue: Dictionary<Key, Value> { return [:] }
 }
