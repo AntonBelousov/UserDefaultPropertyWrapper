@@ -131,37 +131,37 @@ extension UserDefaultsConvertible where Self: Codable {
 }
 
 // MARK: - Default values
-protocol UserDefaultsConvertibleWithDefaultValue: UserDefaultsConvertible {
+public protocol UserDefaultsConvertibleWithDefaultValue: UserDefaultsConvertible {
     static var defaultValue: Self { get }
 }
 
-extension UserDefault where T: UserDefaultsConvertibleWithDefaultValue {
+public extension UserDefault where T: UserDefaultsConvertibleWithDefaultValue {
     init(_ key: String, setupDefault: Bool = false, defaults: UserDefaults = .standard) {
         self.init(key, defaultValue: T.defaultValue, setupDefault: setupDefault, defaults: defaults)
     }
 }
 
 extension Bool: UserDefaultsConvertibleWithDefaultValue {
-    static var defaultValue: Bool { return false }
+    public static var defaultValue: Bool { return false }
 }
 extension Int: UserDefaultsConvertibleWithDefaultValue {
-    static var defaultValue: Int { return 0 }
+    public static var defaultValue: Int { return 0 }
 }
 extension Float: UserDefaultsConvertibleWithDefaultValue {
-    static var defaultValue: Float { return 0 }
+    public static var defaultValue: Float { return 0 }
 }
 extension Double: UserDefaultsConvertibleWithDefaultValue {
-    static var defaultValue: Double { return 0 }
+    public static var defaultValue: Double { return 0 }
 }
 extension Optional: UserDefaultsConvertibleWithDefaultValue where Wrapped: UserDefaultsConvertible {
-    static var defaultValue: Optional<Wrapped> { return .none }
+    public static var defaultValue: Optional<Wrapped> { return .none }
 }
 extension Array: UserDefaultsConvertibleWithDefaultValue where Element: UserDefaultsConvertible {
-    static var defaultValue: Array<Element> { return [] }
+    public static var defaultValue: Array<Element> { return [] }
 }
 extension Array: UserDefaultsConvertibleWithDefaultValue where Element: UserDefaultsConvertible {
-    static var defaultValue: Array<Element> { return [] }
+    public static var defaultValue: Array<Element> { return [] }
 }
 extension Dictionary: UserDefaultsConvertibleWithDefaultValue where Key == String, Value: UserDefaultsConvertible {
-    static var defaultValue: Dictionary<Key, Value> { return [:] }
+    public static var defaultValue: Dictionary<Key, Value> { return [:] }
 }
