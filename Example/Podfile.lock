@@ -1,0 +1,21 @@
+PODS:
+  - UserDefaultPropertyWrapper (0.9.0)
+
+DEPENDENCIES:
+  - UserDefaultPropertyWrapper (from `https://github.com/AntonBelousov/UserDefaultPropertyWrapper`)
+
+EXTERNAL SOURCES:
+  UserDefaultPropertyWrapper:
+    :git: https://github.com/AntonBelousov/UserDefaultPropertyWrapper
+
+CHECKOUT OPTIONS:
+  UserDefaultPropertyWrapper:
+    :commit: d0e3f1c4b4ee97b46330c0f65be399af1faba2e0
+    :git: https://github.com/AntonBelousov/UserDefaultPropertyWrapper
+
+SPEC CHECKSUMS:
+  UserDefaultPropertyWrapper: d96260a2690882b4b28178a0800a80dc876f23ee
+
+PODFILE CHECKSUM: c72d1ee0f87c61e03c3ab59c688e84d89799eea9
+
+COCOAPODS: 1.10.0
