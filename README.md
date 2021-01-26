@@ -11,13 +11,14 @@ pod 'UserDefaultPropertyWrapper', :git => 'https://github.com/AntonBelousov/User
 Call 
 `pod install`
 
-# Usage
+# Features
 - You can use wrapper with base types: `Bool`, `Int`, `Double`, `Float`, `String`, `Date`, `Data`. You can use `Array` of any mentioned type (array of arrays as well), and `Dictionary`, where `Key == String` and `Value == any mentioned type`
 
-- Types may be optional
+- Type may be optional
 
-- Moreover - you can use custom types, just make your type conform to the `UserDefaultsConvertible` protocol.
+- You can use custom types, just make your type conform to the `UserDefaultsConvertible` protocol.
 
+# Usage
 ```
 import UserDefaultPropertyWrapper
 
@@ -64,7 +65,95 @@ Settings.shared.optionalStringValue = nil
 print(String.shared.optionalStringValue)
 
 ```
+# Custom types
 
-# TODO: 
-- Add example for custom types
-- Add example for custom UserDefault (`UserDefault(suiteName:)`)
+You can make any type conform to the `UserDefaultsConvertible` protocol
+
+```
+enum Activity: UserDefaultsConvertible {
+    var userDefaultsValue: Any {
+        switch self {
+        case .reading(let book):
+            return "r\(book)"
+        case .watching(let movie):
+            return "w\(movie)"
+        }
+    }
+    
+    static func create(from userDefaultsValue: Any) -> Activity {
+        var value = userDefaultsValue as! String
+        if value.hasPrefix("r") {
+            value.removeFirst()
+            return .reading(book: value)
+        } else if value.hasPrefix("w") {
+            value.removeFirst()
+            return .watching(movie: value)
+        }
+        fatalError()
+    }
+    
+    case watching(movie: String)
+    case reading(book: String)
+}
+
+class ActivityStorage {
+    @UserDefault("activity", defaultValue: nil)
+    var activity: Activity?
+}
+
+ActivityStorage().activity = .reading(book: "Hearts of Three")
+print(ActivityStorage().activity ?? "nil")
+```
+
+## Using `Codable`
+
+If your type conforms to the [`Codable`](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) protocol, you can easily make if conform `UserDefaultsConvertible`. Just add `UserDefaultsConvertible` after type name and it will became convertible  automatically:
+
+```
+struct User: Codable, UserDefaultsConvertible {
+    var firstname: String
+    var lastname: String
+    var birthdate: Date
+    var address: String
+}
+```
+
+
+# Custom user defaults
+Note. You can use UserDefauls to share data between your application and app extension [see](https://www.swiftbysundell.com/articles/the-power-of-userdefaults-in-swift/#sharing-data-within-an-app-group)
+
+```
+struct User: Codable, UserDefaultsConvertible {
+    var firstname: String
+    var lastname: String
+    var birthdate: Date
+    var address: String
+}
+
+class UsersSource {
+    
+    static let defaults = UserDefaults(suiteName: "app.group.id")!
+    
+    @UserDefault("users", defaultValue:[], defaults: UsersSource.defaults)
+    var users: [User]
+}
+
+func someMethodInApp() {
+
+    let user = User(
+        firstname: "Artur",
+        lastname: "Fleck",
+        birthdate: Date(timeIntervalSince1970: -729345600),
+        address: "Arkham Asylum, Gotham County, New Jersey, United States of America")
+    
+    var source = UsersSource()
+    source.users.append(user)
+}
+
+func someMethodInExtension() {
+    source = UsersSource()
+    print(source.users)
+}
+
+```
+
