@@ -121,11 +121,11 @@ extension Optional: UserDefaultsConvertible where Wrapped: UserDefaultsConvertib
 
 // MARK: - UserDefaultsConvertible + Codable
 extension UserDefaultsConvertible where Self: Codable {
-    var userDefaultsValue: Any {
+    public var userDefaultsValue: Any {
         return try! PropertyListEncoder().encode(self)
     }
     
-    static func create(from userDefaultsValue: Any) -> Self {
+    public static func create(from userDefaultsValue: Any) -> Self {
         try! PropertyListDecoder().decode(Self.self, from: userDefaultsValue as! Data)
     }
 }
