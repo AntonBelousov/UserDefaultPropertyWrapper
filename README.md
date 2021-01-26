@@ -3,7 +3,10 @@
 # Installation
 
 Add to Podfile:
-`pod `
+```
+use_frameworks!
+pod 'UserDefaultPropertyWrapper', :git => 'https://github.com/AntonBelousov/UserDefaultPropertyWrapper'
+```
 
 Call 
 `pod install`
