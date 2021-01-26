@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   UserDefaultPropertyWrapper:
-    :commit: d0e3f1c4b4ee97b46330c0f65be399af1faba2e0
+    :commit: a96e2f54f1234c75836f1580744cbf99caf216ec
     :git: https://github.com/AntonBelousov/UserDefaultPropertyWrapper
 
 SPEC CHECKSUMS:
