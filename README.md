@@ -18,6 +18,8 @@ Call
 
 - You can use custom types, just make your type conform to the `UserDefaultsConvertible` protocol.
 
+- Some types has predefined default values: `false` to `Bool`, `0` for `Int`, `Float`, `Double`, `nil` for `Optional`, empty collection for `Array` and `Dictionary`. You can specify default values for other types (see `UserDefaultsConvertibleWithDefaultValue`)
+
 # Usage
 ```
 import UserDefaultPropertyWrapper
@@ -25,34 +27,43 @@ import UserDefaultPropertyWrapper
 class Settings {
     static let shared = Settings()
     
-    @UserDefault("boolValue", defaultValue: false)
+    @UserDefault("boolValue")
     var boolValue: Bool
+
+    @UserDefault("boolValueWithDefaultValue", defaultValue: true)
+    var boolValueWithDefaultValue: Bool
     
-    @UserDefault("intValue", defaultValue: 0)
+    @UserDefault("intValue")
     var intValue: Int
+
+    @UserDefault("intValueWithDefaultValue", defaultValue: 451)
+    var intValueWithDefaultValue: Int
     
-    @UserDefault("doubleValue", defaultValue: 0)
+    @UserDefault("doubleValue")
     var doubleValue: Double
     
-    @UserDefault("floatValue", defaultValue: 0)
+    @UserDefault("floatValue")
     var floatValue: Float
     
     @UserDefault("stringValue", defaultValue: "")
     var stringValue: String
     
-    @UserDefault("optionalStringValue", defaultValue: nil)
+    @UserDefault("optionalStringValue")
     var optionalStringValue: String?
     
     @UserDefault("dateValue", defaultValue: .distantFuture)
     var dateValue: Date
     
-    @UserDefault("optionalDataValue", defaultValue: nil)
+    @UserDefault("optionalDataValue")
     var optionalDataValue: Data?
     
-    @UserDefault("array", defaultValue: [])
+    @UserDefault("array", defaultValue: [1,9,6,1])
     var array: [Int]
     
-    @UserDefault("dict", defaultValue: [:])
+    @UserDefault("arrayOfArray")
+    var arrayOfArray: [[Int]]
+    
+    @UserDefault("dict")
     var dict: [String: Int]
 }
 
@@ -156,4 +167,3 @@ func someMethodInExtension() {
 }
 
 ```
-
