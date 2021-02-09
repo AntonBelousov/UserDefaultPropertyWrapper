@@ -20,6 +20,10 @@ Call
 
 - Some types has predefined default values: `false` to `Bool`, `0` for `Int`, `Float`, `Double`, `nil` for `Optional`, empty collection for `Array` and `Dictionary`. You can specify default values for other types (see `UserDefaultsConvertibleWithDefaultValue`)
 
+# TODO
+
+- Add model version update handling
+
 # Usage
 ```
 import UserDefaultPropertyWrapper
