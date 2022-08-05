@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
     s.swift_version = '5.3'
 
     s.source   = { :git => "https://github.com/AntonBelousov/UserDefaultPropertyWrapper.git", :tag => s.version }
-    s.source_files = "Source/*.swift"
+    s.source_files = "Sources/*.swift"
 end
